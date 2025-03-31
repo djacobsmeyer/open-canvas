@@ -362,22 +362,22 @@ export async function getModelFromConfig(
     ...extra,
   };
 
-  const isLangChainUserModel = LANGCHAIN_USER_ONLY_MODELS.some(
-    (m) => m === modelName
-  );
-  if (isLangChainUserModel) {
-    const user = await getUserFromConfig(config);
-    if (!user) {
-      throw new Error(
-        "Unauthorized. Can not use LangChain only models without a user."
-      );
-    }
-    if (!user.email?.endsWith("@langchain.dev")) {
-      throw new Error(
-        "Unauthorized. Can not use LangChain only models without a user with a @langchain.dev email."
-      );
-    }
-  }
+  // const isLangChainUserModel = LANGCHAIN_USER_ONLY_MODELS.some(
+  //   (m) => m === modelName
+  // );
+  // if (isLangChainUserModel) {
+  //   const user = await getUserFromConfig(config);
+  //   if (!user) {
+  //     throw new Error(
+  //       "Unauthorized. Can not use LangChain only models without a user."
+  //     );
+  //   }
+  //   if (!user.email?.endsWith("@langchain.dev")) {
+  //     throw new Error(
+  //       "Unauthorized. Can not use LangChain only models without a user with a @langchain.dev email."
+  //     );
+  //   }
+  // }
 
   const includeStandardParams = !TEMPERATURE_EXCLUDED_MODELS.some(
     (m) => m === modelName

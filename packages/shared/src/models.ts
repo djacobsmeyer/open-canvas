@@ -172,7 +172,7 @@ const OLLAMA_MODELS = [
   },
 ];
 
-const ANTHROPIC_MODELS = [
+const ANTHROPIC_MODELS: ModelConfigurationParams[] = [
   {
     name: "claude-3-7-sonnet-latest",
     label: "Claude 3.7 Sonnet",
@@ -227,26 +227,6 @@ const ANTHROPIC_MODELS = [
       maxTokens: {
         min: 1,
         max: 8192,
-        default: 4096,
-        current: 4096,
-      },
-    },
-    isNew: false,
-  },
-  {
-    name: "claude-3-haiku-20240307",
-    label: "Claude 3 Haiku (old)",
-    config: {
-      provider: "anthropic",
-      temperatureRange: {
-        min: 0,
-        max: 1,
-        default: 0.5,
-        current: 0.5,
-      },
-      maxTokens: {
-        min: 1,
-        max: 4096,
         default: 4096,
         current: 4096,
       },
@@ -425,12 +405,7 @@ const GEMINI_MODELS: ModelConfigurationParams[] = [
 ];
 
 export const LANGCHAIN_USER_ONLY_MODELS = [
-  "o1",
-  "gpt-4o",
-  "gpt-4.5-preview",
-  "claude-3-5-sonnet-latest",
-  "claude-3-7-sonnet-latest",
-  "gemini-2.0-flash-thinking-exp-01-21",
+
 ];
 
 // Models which do NOT support the temperature parameter.

@@ -96,7 +96,7 @@ function routePostWebSearch(
   );
 
   return new Command({
-    goto: includesArtifacts ? "rewriteArtifact" : "generateArtifact",
+    goto: includesArtifacts ? "rewriteArtifact" : "replyToGeneralInput",
     update: {
       webSearchEnabled: false,
       messages: [webSearchResultsMessage],

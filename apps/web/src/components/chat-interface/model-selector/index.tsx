@@ -123,10 +123,10 @@ export default function ModelSelector({
   const [open, setOpen] = useState(false);
   const [openConfigModelId, setOpenConfigModelId] = useState<ALL_MODEL_NAMES>();
 
-  useEffect(() => {
-    if (!user) return;
-    setIsLangChainUser(user?.email?.endsWith("@langchain.dev") || false);
-  }, [user]);
+  // useEffect(() => {
+  //   if (!user) return;
+  //   setIsLangChainUser(user?.email?.endsWith("@langchain.dev") || false);
+  // }, [user]);
 
   const handleModelChange = useCallback(
     async (newModel: ALL_MODEL_NAMES) => {
@@ -137,12 +137,12 @@ export default function ModelSelector({
   );
 
   const allAllowedModels = ALL_MODELS.filter((model) => {
-    if (
-      !isLangChainUser &&
-      LANGCHAIN_USER_ONLY_MODELS.some((m) => m === model.name)
-    ) {
-      return false;
-    }
+    console.log(`Checking model: ${model.name}`);
+    
+    // if (!isLangChainUser && LANGCHAIN_USER_ONLY_MODELS.some((m) => m === model.name)) {
+    //   console.log(`${model.name} filtered due to LangChain user restriction`);
+    //   return false;
+    // }
 
     if (
       model.name.includes("fireworks/") &&
@@ -154,6 +154,7 @@ export default function ModelSelector({
       model.name.includes("claude-") &&
       process.env.NEXT_PUBLIC_ANTHROPIC_ENABLED === "false"
     ) {
+      console.log(`${model.name} filtered due to Anthropic being disabled`);
       return false;
     }
     if (
