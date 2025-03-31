@@ -24,9 +24,9 @@ import {
 } from "@opencanvas/shared/constants";
 import {
   TEMPERATURE_EXCLUDED_MODELS,
-  LANGCHAIN_USER_ONLY_MODELS,
+  // LANGCHAIN_USER_ONLY_MODELS,
 } from "@opencanvas/shared/models";
-import { createClient, Session, User } from "@supabase/supabase-js";
+// import { createClient, Session, User } from "@supabase/supabase-js";
 
 export const formatReflections = (
   reflections: Reflections,
@@ -307,31 +307,31 @@ export function optionallyGetSystemPromptFromConfig(
   return config.configurable?.systemPrompt as string | undefined;
 }
 
-async function getUserFromConfig(
-  config: LangGraphRunnableConfig
-): Promise<User | undefined> {
-  if (
-    !process.env.NEXT_PUBLIC_SUPABASE_URL ||
-    !process.env.SUPABASE_SERVICE_ROLE
-  ) {
-    return undefined;
-  }
+// async function getUserFromConfig(
+//   config: LangGraphRunnableConfig
+// ): Promise<User | undefined> {
+//   if (
+//     !process.env.NEXT_PUBLIC_SUPABASE_URL ||
+//     !process.env.SUPABASE_SERVICE_ROLE
+//   ) {
+//     return undefined;
+//   }
 
-  const accessToken = (
-    config.configurable?.supabase_session as Session | undefined
-  )?.access_token;
-  if (!accessToken) {
-    return undefined;
-  }
+//   const accessToken = (
+//     config.configurable?.supabase_session as Session | undefined
+//   )?.access_token;
+//   if (!accessToken) {
+//     return undefined;
+//   }
 
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_ROLE
-  );
+//   const supabase = createClient(
+//     process.env.NEXT_PUBLIC_SUPABASE_URL,
+//     process.env.SUPABASE_SERVICE_ROLE
+//   );
 
-  const authRes = await supabase.auth.getUser(accessToken);
-  return authRes.data.user || undefined;
-}
+//   const authRes = await supabase.auth.getUser(accessToken);
+//   return authRes.data.user || undefined;
+// }
 
 export function isUsingO1MiniModel(config: LangGraphRunnableConfig) {
   const { modelName } = getModelConfig(config);
